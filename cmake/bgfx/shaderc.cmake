@@ -18,6 +18,9 @@ file(
 )
 
 add_executable(shaderc ${SHADERC_SOURCES})
+if (EMSCRIPTEN)
+    target_link_options(shaderc PRIVATE -lnodefs.js -sNODERAWFS -sSTACK_SIZE=1048576)
+endif ()
 
 target_link_libraries(
 	shaderc
